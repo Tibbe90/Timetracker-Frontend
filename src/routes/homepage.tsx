@@ -7,8 +7,8 @@ function homepage() {
         <main>
             <h1>Welcome to the TajmTrackR</h1>
             <section>
-                <button className="mainButton">Login</button>
-                <button className="mainButton">Register</button>
+            <button className="mainButton" >Login</button>
+                <button className="mainButton" onClick={() => navigate(`/register`)}>Register</button>
             </section>
         </main>
     )

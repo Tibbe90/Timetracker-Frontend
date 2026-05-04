@@ -10,8 +10,8 @@ function App() {
     <BrowserRouter>
   <Routes>
     <Route path="/" element={<Homepage />} />
-    <Route path="/" element={<Login />} />
-    <Route path="/" element={<Register />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/register" element={<Register />} />
   <Route path="*" element={<h1>404 Not found</h1>}/>
   </Routes>
     </BrowserRouter>

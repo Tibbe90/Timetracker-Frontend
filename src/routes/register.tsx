@@ -1,41 +1,103 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../css/homepage.css";
-import type { newUser, user } from "../types/types";
+import type { NewUser } from "../types/types";
 
-function login() {
-    const navigate = useNavigate();
-    const [newUser, setNewUser] = useState<newUser>()
+function register() {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [validatePassword, setValidatePassword] = useState<string>("");
+  const [newUser, setNewUser] = useState<NewUser>({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-    const saveUser = (e: React.SubmitEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        fetch(`https://seashell-backend-m5vt7.ondigitalocean.app/api/user/register`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                newUser,
-            }),
-        })
-        .then((response: Response) => response.json())
-        .then((createdUser: user) => {
-            setNewUser
-        })
+  const handleNewUser = () => {
+    setNewUser({
+      username,
+      email,
+      password,
+    });
+  };
 
+  const saveUser = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (password != validatePassword) {
+      alert("Passwords don't match");
     }
-
-    return(
-        <main>
-            <h1>Happy to see you want to join us</h1>
-            <section>
-                <form onSubmit={saveUser}>
-                    <input type="text" required name="username" placeholder="enter your username" value={newUser?.username} />
-                </form>
-                <button type="submit" className="mainButton" onClick={() => navigate("/")}>Complete Registration</button>
-            </section>
-        </main>
+    fetch(
+      `https://seashell-backend-m5vt7.ondigitalocean.app/api/user/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...newUser,
+        }),
+      },
     )
+      .then((response: Response) => response.json())
+      .then(data => {
+        navigate(`/`)
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("something went wrong");
+      });
+  };
+
+  return (
+    <main>
+      <h1>Happy to see that you want to join us</h1>
+      <section>
+        <form onSubmit={saveUser}>
+          <input
+            type="text"
+            required
+            placeholder="enter your username"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+
+          <input
+            type="email"
+            required
+            placeholder="enter your email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <input
+            type="password"
+            required
+            placeholder="enter your password"
+            name="password"
+            value={validatePassword}
+            onChange={(e) => setValidatePassword(e.target.value)}
+          />
+
+          <input
+            type="password"
+            required
+            placeholder="re-enter your password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button type="submit" className="mainButton" onClick={handleNewUser}>
+            Complete Registration
+          </button>
+        </form>
+      </section>
+    </main>
+  );
 }
 
-export default login;
+export default register;
