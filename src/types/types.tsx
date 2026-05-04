@@ -11,3 +11,14 @@ export interface User {
     "createdDate": string
     "role": String
 }
+
+export interface Credentials {
+    "username": string,
+    "password": string
+}
+
+export interface Category {
+    "id": string,
+    "userId": string,
+    "categoryName": string
+}
