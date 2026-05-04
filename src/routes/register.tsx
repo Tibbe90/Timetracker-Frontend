@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../css/homepage.css";
 import type { NewUser } from "../types/types";
+const url = "http://localhost:8080/api/user/register";
 
 function register() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function register() {
       alert("Passwords don't match");
     }
     fetch(
-      `https://seashell-backend-m5vt7.ondigitalocean.app/api/user/register`,
+      `${url}`,
       {
         method: "POST",
         headers: {
@@ -42,6 +43,8 @@ function register() {
     )
       .then((response: Response) => response.json())
       .then(data => {
+        console.log(data);
+        
         navigate(`/`)
       })
       .catch((err) => {
