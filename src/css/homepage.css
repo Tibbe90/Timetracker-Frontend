@@ -5,3 +5,12 @@
     padding: 1rem;
     background-color: blue;
 }
+
+.createCategory {
+    margin-top: 20%;
+}
+.createCategory button {
+    padding: 1rem;
+    margin-left: 10px;
+    background-color: blue;
+}
