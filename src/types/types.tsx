@@ -5,6 +5,7 @@ export interface NewUser {
 }
 
 export interface User {
+    "id": string,
     "username": string,
     "email":string,
     "password": string
@@ -19,6 +20,10 @@ export interface Credentials {
 
 export interface Category {
     "id": string,
+    "userId": string,
+    "categoryName": string
+}
+export interface NewCategory {
     "userId": string,
     "categoryName": string
 }

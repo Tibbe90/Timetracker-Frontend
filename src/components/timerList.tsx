@@ -1,12 +1,11 @@
 // https://react-bootstrap.netlify.app/docs/components/dropdowns/
-// https://reactrouter.com/api/hooks/useFetcher
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import type { Category, User } from '../types/types';
 import { useEffect, useState } from 'react';
 const url = 'http://localhost:8080/api/my-categories';
 
-function CategorySelect() {
+function timerList() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentUser, setCurrentUser] = useState<User|null>(null)
   console.log(currentUser);
@@ -50,4 +49,4 @@ function CategorySelect() {
   )
 }
 
-export default CategorySelect;
+export default timerList;

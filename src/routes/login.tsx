@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Credentials } from "../types/types";
-const url = "http://localhost:8080/login"
+import { useState } from "react";
+const url = "http://localhost:8080/api/user/login"
 
 
 function login() {
@@ -23,24 +23,24 @@ function login() {
   const loginUser = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    const userData = new FormData
-    userData.append('username', username)
-    userData.append('password', password)
-    
-    const response = await fetch(`${url}`,
+    //Update to also check password
+    const response = await fetch(`http://localhost:8080/api/user/login/${credentials.username}`,
       {
-        method: "POST",
-        credentials:"include",
-        body: new URLSearchParams({ username, password })
-        // body: userData
+        method: "POST",headers: {
+        "Content-Type": "application/json",
+      },
+        body: JSON.stringify(credentials.username)
       },
     )
     if (response.ok) {
-        navigate(`/`)
+      const user = await response.json()
+      console.log(user.id);
+      localStorage.setItem('user', JSON.stringify(user))
+      navigate(`/UserDashboard`)
+        
     } else {
         const error = await response.text()
         console.log("error: ", error);
-        console.log("userdata: ", userData)
         alert("something went wrong");
     }
   };
@@ -48,7 +48,7 @@ function login() {
   return (
     <main>
       <h1>Glad to see you back</h1>
-      <h1>Take your time</h1>
+      <h1>Lets take your time</h1>
       <section>
         <form onSubmit={loginUser}>
           <input
