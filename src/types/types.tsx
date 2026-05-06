@@ -5,6 +5,7 @@ export interface NewUser {
 }
 
 export interface User {
+    "id": string,
     "username": string,
     "email":string,
     "password": string
@@ -21,4 +22,21 @@ export interface Category {
     "id": string,
     "userId": string,
     "categoryName": string
+}
+export interface NewCategory {
+    "userId": string,
+    "categoryName": string
+}
+export interface TimerStatus {
+    "status": string
+}
+export interface Timer {
+    "Id": string,
+    "userId": string,
+    "categoryId": string,
+    "timeStart": Date,
+    "timeStop": Date,
+    "duration": number,
+    "status": string,
+    "creationDate": Date
 }

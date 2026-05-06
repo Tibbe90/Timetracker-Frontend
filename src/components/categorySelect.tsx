@@ -1,30 +1,36 @@
 // https://react-bootstrap.netlify.app/docs/components/dropdowns/
 // https://reactrouter.com/api/hooks/useFetcher
 
-import Dropdown from 'react-bootstrap/Dropdown';
-import { useFetcher } from "react-router-dom";
-import type { Category } from '../types/types';
-import { useEffect } from 'react';
-const url = "http://localhost:8080/api/my-categories"
+import Dropdown from "react-bootstrap/Dropdown";
+import type { Category } from "../types/types";
 
-function categorySelect() {
-  const categories = useFetcher()
-  useEffect(() => {
-    categories.load(url) },
-    [categories])
-
-  console.log(categories);
-  const myCategories = categories.data
-  return (
-  <div>
-    <Dropdown.Menu show>
-        <Dropdown.Header>Your categories</Dropdown.Header>
-        {myCategories.map((category: Category) => 
-            <Dropdown.Item eventKey={category.id}>{category.categoryName}</Dropdown.Item>
-        )}
-    </Dropdown.Menu>
-  </div>
-  )
+interface CategoryProps {
+  categories: Category[];
+  setNewCategory: (id: string) => void;
 }
 
-export default categorySelect;
+function CategorySelect({ categories, setNewCategory }: CategoryProps) {
+  const selectCategory = (eventKey: string | null) => {
+    if (eventKey) {
+      setNewCategory(eventKey);
+    }
+  };
+
+  return (
+    <div>
+      <Dropdown onSelect={selectCategory}>
+        <Dropdown.Menu show>
+          <Dropdown.Header>Your categories</Dropdown.Header>
+          {categories.map((category: Category) => (
+            <Dropdown.Item key={category.id} eventKey={category.id}>
+              {category.categoryName}
+              <br />
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </div>
+  );
+}
+
+export default CategorySelect;
