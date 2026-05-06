@@ -1,52 +1,30 @@
-// https://react-bootstrap.netlify.app/docs/components/dropdowns/
+import useCategory from "../hooks/useCategory";
 
-import Dropdown from 'react-bootstrap/Dropdown';
-import type { Category, User } from '../types/types';
-import { useEffect, useState } from 'react';
 const url = 'http://localhost:8080/api/my-categories';
 
-function timerList() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [currentUser, setCurrentUser] = useState<User|null>(null)
-  console.log(currentUser);
-  
-  useEffect(() => {
-    const stringedUser = localStorage.getItem('user')
-    if (stringedUser) {
-      const parseUser: User = JSON.parse(stringedUser)
-      setCurrentUser(parseUser)
-    }
-  }, [])
-  
+interface TimerProps {
+  categoryId: string
+}
 
-  useEffect(() => {
-      if(!currentUser)
-        return
-      const categoryFetch = async () => {
-        const response = await fetch(`http://localhost:8080/api/${currentUser.id}/my-categories`);
-        if (response.ok) {
-          setCategories(await response.json());
-          console.log(await response.json);
-          
-        } else {
-          console.log(await response.text());
-        }
-      };
-      
-      categoryFetch();
-    }, [currentUser?.id]);
-    
+function TimerList({categoryId}: TimerProps) {
+const category = useCategory(categoryId)
+console.log("category from timerlist: ", category);
 
   return (
   <div>
-    <Dropdown.Menu show>
-        <Dropdown.Header>Your categories</Dropdown.Header>
-        {categories.map((category: Category) => 
-            <Dropdown.Item eventKey={category.id}>{category.categoryName}</Dropdown.Item>
-        )}
-    </Dropdown.Menu>
+    <table>
+        <thead>
+            <tr>
+                <th>Elapsed Time</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
   </div>
   )
 }
 
-export default timerList;
+export default TimerList;

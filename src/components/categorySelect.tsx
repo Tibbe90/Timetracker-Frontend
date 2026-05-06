@@ -1,53 +1,37 @@
 // https://react-bootstrap.netlify.app/docs/components/dropdowns/
 // https://reactrouter.com/api/hooks/useFetcher
 
-import Dropdown from 'react-bootstrap/Dropdown';
-import type { Category, User } from '../types/types';
-import { useEffect, useState } from 'react';
-const url = 'http://localhost:8080/api/my-categories';
+import Dropdown from "react-bootstrap/Dropdown";
+import type { Category } from "../types/types";
+const url = "http://localhost:8080/api/my-categories";
 
-function CategorySelect() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [currentUser, setCurrentUser] = useState<User|null>(null)
-  console.log(currentUser);
-  
-  useEffect(() => {
-    const stringedUser = localStorage.getItem('user')
-    if (stringedUser) {
-      const parseUser: User = JSON.parse(stringedUser)
-      setCurrentUser(parseUser)
+interface CategoryProps {
+  categories: Category[];
+  setNewCategory: (id: string) => void;
+}
+
+function CategorySelect({ categories, setNewCategory }: CategoryProps) {
+  const selectCategory = (eventKey: string | null) => {
+    if (eventKey) {
+      setNewCategory(eventKey);
     }
-  }, [])
-  
-
-  useEffect(() => {
-      if(!currentUser)
-        return
-      const categoryFetch = async () => {
-        const response = await fetch(`http://localhost:8080/api/${currentUser.id}/my-categories`);
-        if (response.ok) {
-          setCategories(await response.json());
-          console.log(await response.json);
-          
-        } else {
-          console.log(await response.text());
-        }
-      };
-      
-      categoryFetch();
-    }, [currentUser?.id]);
-    
+  };
 
   return (
-  <div>
-    <Dropdown.Menu show>
-        <Dropdown.Header>Your categories</Dropdown.Header>
-        {categories.map((category: Category) => 
-            <Dropdown.Item eventKey={category.id}>{category.categoryName}</Dropdown.Item>
-        )}
-    </Dropdown.Menu>
-  </div>
-  )
+    <div>
+      <Dropdown onSelect={selectCategory}>
+        <Dropdown.Menu show>
+          <Dropdown.Header>Your categories</Dropdown.Header>
+          {categories.map((category: Category) => (
+            <Dropdown.Item key={category.id} eventKey={category.id}>
+              {category.categoryName}
+              <br />
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </div>
+  );
 }
 
 export default CategorySelect;
