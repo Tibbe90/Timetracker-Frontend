@@ -7,7 +7,7 @@ import useCategories from "../hooks/useCategories";
 import Stopwatch from "../components/Stopwatch";
 
 function UserDashboard() {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<User>();
   const [currentCategory, setCurrentCategory] = useState<string>("")
   const [currentTimer, setCurrentTimer] = useState<string>("")
   const [currentTime, setCurrentTime] = useState<number>(0)
@@ -37,7 +37,7 @@ function UserDashboard() {
         </div>
         <div>
             <TimerList categoryId={currentCategory}/>
-            <Stopwatch currentTime={setCurrentTime} currentUser={currentUser?.id}/>
+            <Stopwatch setCurrentTime={setCurrentTime} currentUserId={currentUser?.id ?? null} currentCategoryId={currentCategory}/>
         </div>
         <div>
           <CreateCategory />

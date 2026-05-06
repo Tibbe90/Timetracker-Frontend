@@ -2,24 +2,33 @@ import React, { useEffect, useState } from "react";
 import { useStopwatch } from "react-timer-hook";
 import type { Timer, User } from "../types/types";
 import useTimerStatus from "../hooks/useTimerStatus";
+import useTimerStart from "../hooks/useTimerStart";
 
 //https://www.npmjs.com/package/react-timer-hook
 
 interface StopwatchProps {
   setCurrentTime: (time: number) => void;
   currentUserId: string | null;
+  currentCategoryId: string | null;
 }
 
-function Stopwatch({ setCurrentTime, currentUserId }: StopwatchProps) {
+function Stopwatch({ setCurrentTime, currentUserId, currentCategoryId }: StopwatchProps) {
   const [currentStopwatch, setCurrentStopwatch] = useState<number>(0);
   const [autoStart, setAutoStart] = useState<boolean>(false);
   const [offsetTime, setOffsetTime] = useState<Date>();
   const checkTimer: Timer | null = useTimerStatus(currentUserId ?? undefined);
+
   useEffect(() => {
     setCurrentTime(currentStopwatch);
   }, [currentStopwatch]);
 
-  //Checks if there's a timer that was never stopped
+  const handleStart = () => {
+    start
+    useTimerStart(currentUserId ?? undefined, currentCategoryId ?? undefined)
+  }
+
+
+  //Checks if there's a timer that was never stopped and updates the stopwatch to match
   useEffect(() => {
     if (checkTimer) {
       const status = checkTimer.status;
@@ -29,16 +38,18 @@ function Stopwatch({ setCurrentTime, currentUserId }: StopwatchProps) {
         newOffset.setMilliseconds(newOffset.getMilliseconds() + timerTime)
         setOffsetTime(newOffset)
         setAutoStart(true);
-      } else {
+      } else { 
         setAutoStart(false);
-        const offsetTime = checkTimer.duration;
+        const durationTime:number = new Date().getTime() - checkTimer.duration.getTime();
+        const newOffset:Date = new Date()
+        newOffset.setMilliseconds(newOffset.getMilliseconds() + durationTime)
+        setOffsetTime(newOffset)
       }
       console.log(offsetTime);
     }
   }, []);
 
   const {
-    totalSeconds,
     milliseconds,
     seconds,
     minutes,
@@ -48,7 +59,7 @@ function Stopwatch({ setCurrentTime, currentUserId }: StopwatchProps) {
     start,
     pause,
     reset,
-  } = useStopwatch({ autoStart, interval: 90, offsetTimestamp:  });
+  } = useStopwatch({ autoStart, interval: 90, offsetTimestamp: offsetTime });
 
   return (
     <div>
@@ -59,7 +70,7 @@ function Stopwatch({ setCurrentTime, currentUserId }: StopwatchProps) {
       </div>
       <div></div>
       <p>{isRunning ? "Running" : "Not running"}</p>
-      <button onClick={start}>Start</button>
+      <button onClick={handleStart}>Start</button>
       <button onClick={pause}>Pause</button>
       <button onClick={() => reset()}>Reset</button>
     </div>
