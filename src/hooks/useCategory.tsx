@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Category } from "../types/types";
 
-export function useCategories(categoryId?: string) {
+export function useCategory(categoryId?: string) {
   const [category, setCategory] = useState<Category>();
 
   useEffect(() => {
@@ -26,4 +26,4 @@ export function useCategories(categoryId?: string) {
   return category;
 }
 
-export default useCategories;
+export default useCategory;
