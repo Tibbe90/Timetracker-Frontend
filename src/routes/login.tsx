@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import type { Credentials } from "../types/types";
 import { useState } from "react";
-const url = "http://localhost:8080/api/user/login"
-
 
 function login() {
    const navigate = useNavigate();

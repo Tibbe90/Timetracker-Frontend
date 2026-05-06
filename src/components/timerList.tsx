@@ -1,15 +1,13 @@
 import useCategory from "../hooks/useCategory";
 
-const url = 'http://localhost:8080/api/my-categories';
-
 interface TimerProps {
   categoryId: string
 }
 
 function TimerList({categoryId}: TimerProps) {
-const category = useCategory(categoryId)
-console.log("category from timerlist: ", category);
-
+ const category = useCategory(categoryId)
+ console.log(category);
+ 
   return (
   <div>
     <table>

@@ -15,7 +15,6 @@ export function useCategory(categoryId?: string) {
       if (response.ok) {
         const data = await response.json();
         setCategory(data);
-        console.log(data);
       } else {
         console.log(await response.text());
       }
