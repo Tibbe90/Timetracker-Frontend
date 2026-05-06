@@ -27,3 +27,16 @@ export interface NewCategory {
     "userId": string,
     "categoryName": string
 }
+export interface TimerStatus {
+    "status": string
+}
+export interface Timer {
+    "Id": string,
+    "userId": string,
+    "categoryId": string,
+    "timeStart": string,
+    "timeStop": string,
+    "duration": string,
+    "status": string,
+    "creationDate": string
+}
