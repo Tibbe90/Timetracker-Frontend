@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import type { Timer } from "../types/types";
 
 export function useTimerStatus(userId?: string) {
-  const [timer, setTimer] = useState<string>("");
+  const [timer, setTimer] = useState<Timer | null>(null);
 
   useEffect(() => {
     if (!userId) {
