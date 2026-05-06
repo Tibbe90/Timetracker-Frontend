@@ -3,7 +3,6 @@
 
 import Dropdown from "react-bootstrap/Dropdown";
 import type { Category } from "../types/types";
-const url = "http://localhost:8080/api/my-categories";
 
 interface CategoryProps {
   categories: Category[];

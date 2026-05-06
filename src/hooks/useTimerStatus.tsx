@@ -17,7 +17,7 @@ export function useTimerStatus(userId?: string) {
         setTimer(data);
         console.log(data);
       } else {
-        console.log(await response.text());
+        console.log(await response.status);
       }
     };
     getRunningTimer();

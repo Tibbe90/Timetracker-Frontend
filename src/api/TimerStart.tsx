@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import type { Timer } from "../types/types";
+async function timerStart(userId?: string, categoryId?: string) {
 
-export function useTimerPause(userId?: string, categoryId?: string) {
-
-  useEffect(() => {
     const startTime: number = new Date().getTime()
+    console.log("userId: ", userId, " categoryId: ", categoryId);
+    
     if (!userId || !categoryId) {
-      return;
+      alert("You must select a category first")
+      return true;
     }
-    const pauseTimer = async () => {
       const response = await fetch(
         `http://localhost:8080/api/time/${userId}/${categoryId}/start`, {
         method: "POST",
@@ -19,15 +17,12 @@ export function useTimerPause(userId?: string, categoryId?: string) {
       },
       );
       if (response.ok) {
-        return
+        return false
       } else {
         console.log(await response.text());
       }
-    };
-    pauseTimer();
-  }, []);
 
-  return
+  return true
 }
 
-export default useTimerPause;
+export default timerStart;

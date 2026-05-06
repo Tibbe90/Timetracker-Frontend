@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Category, NewCategory, User } from "../types/types";
+import type { NewCategory, User } from "../types/types";
 import { useNavigate } from "react-router-dom";
-const url = 'http://localhost:8080/api/${userId}/category'
 
 function createCategory() {
     const navigate = useNavigate();
@@ -24,12 +23,9 @@ function createCategory() {
         if (stringedUser) {
           const parseUser: User = JSON.parse(stringedUser)
           setUserId(parseUser.id)
-          console.log(parseUser.id);
-          
         }
       }, [])
       
-
     const saveCategory = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 

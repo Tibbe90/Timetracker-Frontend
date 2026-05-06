@@ -36,7 +36,7 @@ export interface Timer {
     "categoryId": string,
     "timeStart": Date,
     "timeStop": Date,
-    "duration": Date,
+    "duration": number,
     "status": string,
     "creationDate": Date
 }
