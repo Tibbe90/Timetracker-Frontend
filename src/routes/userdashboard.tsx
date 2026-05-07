@@ -46,8 +46,11 @@ function UserDashboard() {
         </div>
         <div>
         <button className="button" onClick={() => navigate("/history")}>View tracking history</button>
+        <button className="button" onClick={() => navigate("/timerList")}>View list of timers</button>
         </div>
       </div>
+      <div>
+        <button className="button" onClick={() => navigate("/")}>Back to home</button></div>
     </main>
   );
 }

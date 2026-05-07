@@ -35,7 +35,7 @@ export interface TimerStatus {
     "status": string
 }
 export interface Timer {
-    "Id": string,
+    "id": string,
     "userId": string,
     "categoryId": string,
     "timeStart": Date,

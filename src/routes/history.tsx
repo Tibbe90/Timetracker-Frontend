@@ -69,7 +69,7 @@ const data = {
     {
       label: 'Time spent in minutes',
       data: historyData,
-      backgroundColor: 'rgba(249, 251, 252, 0.8)',
+      backgroundColor: 'rgba(0, 92, 138, 0.94)',
     }
   ],
 };

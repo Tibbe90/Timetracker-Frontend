@@ -1,7 +1,6 @@
 async function timerStart(userId?: string, categoryId?: string) {
 
     const startTime: number = new Date().getTime()
-    console.log("userId: ", userId, " categoryId: ", categoryId);
     
     if (!userId || !categoryId) {
       alert("You must select a category first")

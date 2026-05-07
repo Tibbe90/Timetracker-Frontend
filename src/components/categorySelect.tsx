@@ -24,7 +24,7 @@ function CategorySelect({ categories, setNewCategory }: CategoryProps) {
 
   return (
       <Dropdown onSelect={selectCategory}>
-        <Dropdown.Toggle variant="outline-secondary">{selectedCategory?.categoryName ?? "Select category"}</Dropdown.Toggle>
+        <Dropdown.Toggle >{selectedCategory?.categoryName ?? "Select category"}</Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Header>Your categories</Dropdown.Header>
           {categories.map((category: Category) => (

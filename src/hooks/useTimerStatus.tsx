@@ -15,9 +15,8 @@ export function useTimerStatus(userId?: string) {
       if (response.ok) {
         const data = await response.json();
         setTimer(data);
-        console.log(data);
       } else {
-        console.log(await response.status);
+        console.log("no active timer found");
       }
     };
     getRunningTimer();

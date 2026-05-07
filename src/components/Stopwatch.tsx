@@ -83,7 +83,7 @@ function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
       <button disabled={isRunning} onClick={handleStart}>
         Start
       </button>
-      <button onClick={handleStop} disabled={!isRunning && !activeStopwatch}>
+      <button onClick={handleStop} disabled={!isRunning}>
         Stop
       </button>
     </div>
