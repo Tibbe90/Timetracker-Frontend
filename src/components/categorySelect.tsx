@@ -3,7 +3,7 @@
 
 import Dropdown from "react-bootstrap/Dropdown";
 import type { Category } from "../types/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface CategoryProps {
   categories: Category[];
