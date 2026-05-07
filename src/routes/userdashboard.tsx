@@ -4,8 +4,10 @@ import CreateCategory from "../components/createCategory";
 import type { User } from "../types/types";
 import useCategories from "../hooks/useCategories";
 import Stopwatch from "../components/Stopwatch";
+import { useNavigate } from "react-router-dom";
 
 function UserDashboard() {
+  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState<User>();
   const [currentCategory, setCurrentCategory] = useState<string>("")
   const categories = useCategories(currentUser?.id);
@@ -37,6 +39,9 @@ function UserDashboard() {
         </div>
         <div>
           <CreateCategory />
+        </div>
+        <div>
+          <button className="mainButton" onClick={() => navigate(`/history`)}>View history</button>
         </div>
       </div>
     </main>
