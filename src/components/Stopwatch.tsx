@@ -12,7 +12,7 @@ interface StopwatchProps {
 
 function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
   //ActiveStopwatch has no purpose in V1, it exists to implement pause logic. Right now functions the same as isRunning
-  const [activeStopwatch, setActiveStopwatch] = useState<boolean>(false);
+ // const [activeStopwatch, setActiveStopwatch] = useState<boolean>(false);
   const [offsetTime, setOffsetTime] = useState<Date | undefined>(undefined);
 
   const checkTimer: Timer | null = useTimerStatus(currentUserId!);
@@ -35,21 +35,21 @@ function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
   useEffect(() => {
     if (!checkTimer) {
       setOffsetTime(undefined);
-      setActiveStopwatch(false);
+   //   setActiveStopwatch(false);
       return;
     }
     const currentDate = Date.now();
     const timeStart = new Date(checkTimer.timeStart);
     const duration = currentDate - timeStart.getTime();
     const newOffset = new Date(currentDate + duration);
-    setActiveStopwatch(true);
+ //   setActiveStopwatch(true);
     setOffsetTime(newOffset);
   }, [checkTimer]);
 
   useEffect(() => {
     if (offsetTime) {
       reset(offsetTime, true);
-      setActiveStopwatch(true);
+  //    setActiveStopwatch(true);
     }
   }, [offsetTime, checkTimer]);
 
@@ -62,14 +62,14 @@ function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
       return;
     }
     start();
-    setActiveStopwatch(true);
+  //  setActiveStopwatch(true);
   };
 
   const handleStop = async () => {
     await timerStop(currentUserId!);
     reset(undefined, false);
     setOffsetTime(undefined);
-    setActiveStopwatch(false);
+  //  setActiveStopwatch(false);
   };
 
   return (
@@ -83,7 +83,7 @@ function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
       <button disabled={isRunning} onClick={handleStart}>
         Start
       </button>
-      <button onClick={handleStop} disabled={!isRunning && !activeStopwatch}>
+      <button onClick={handleStop} disabled={!isRunning}>
         Stop
       </button>
     </div>

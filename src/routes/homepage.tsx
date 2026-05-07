@@ -13,9 +13,6 @@ function homepage() {
         <button className="mainButton" onClick={() => navigate(`/register`)}>
           Register
         </button>
-        <button className="mainButton" onClick={() => navigate(`/userdashboard`)}>
-          Guest
-        </button>
       </section>
     </main>
   );

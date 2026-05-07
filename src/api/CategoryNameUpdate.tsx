@@ -4,11 +4,11 @@ async function CategoryNameUpdate(categoryId?: string, newCategoryName?: string)
     
     if (!categoryId) {
       alert("You must select a category first")
-      return true;
+      return;
     }
     if (!newCategoryName) {
       alert("Missing new category name")
-      return true;
+      return;
     }
       const response = await fetch(
         `http://localhost:8080/api/category/${categoryId}`, {
@@ -20,12 +20,12 @@ async function CategoryNameUpdate(categoryId?: string, newCategoryName?: string)
       },
       );
       if (response.ok) {
-        return false
+        return
       } else {
         console.log(await response.text());
       }
 
-  return true
+  return
 }
 
 export default CategoryNameUpdate;

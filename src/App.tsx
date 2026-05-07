@@ -6,6 +6,7 @@ import Register from "./routes/register";
 import UserDashboard from './routes/userdashboard';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import TimerList from './routes/timerList';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
     <Route path="/register" element={<Register />} />
     <Route path="/userdashboard" element={<UserDashboard />} />
     <Route path="/history" element={<History />} />
+    <Route path='/timerList' element={<TimerList />} />
   <Route path="*" element={<h1>404 Not found</h1>}/>
   </Routes>
     </BrowserRouter>

@@ -15,7 +15,6 @@ export function useCategoryHistory(userId?: string) {
       if (response.ok) {
         const data = await response.json();
         setCategoryHistory(data);
-        console.log(data);
       } else {
         console.log(await response.text());
       }

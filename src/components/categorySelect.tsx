@@ -3,7 +3,7 @@
 
 import Dropdown from "react-bootstrap/Dropdown";
 import type { Category } from "../types/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface CategoryProps {
   categories: Category[];
@@ -24,7 +24,7 @@ function CategorySelect({ categories, setNewCategory }: CategoryProps) {
 
   return (
       <Dropdown onSelect={selectCategory}>
-        <Dropdown.Toggle variant="outline-secondary">{selectedCategory?.categoryName ?? "Select category"}</Dropdown.Toggle>
+        <Dropdown.Toggle >{selectedCategory?.categoryName ?? "Select category"}</Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Header>Your categories</Dropdown.Header>
           {categories.map((category: Category) => (

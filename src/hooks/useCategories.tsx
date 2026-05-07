@@ -15,7 +15,6 @@ export function useCategories(userId?: string) {
       if (response.ok) {
         const data = await response.json();
         setCategories(data);
-        console.log(data);
       } else {
         console.log(await response.text());
       }
