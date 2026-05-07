@@ -41,7 +41,7 @@ function UserDashboard() {
           <CreateCategory />
         </div>
         <div>
-          <button className="mainButton" onClick={() => navigate(`/history`)}>View history</button>
+        <button className="button" onClick={() => navigate("/history")}>View tracking history</button>
         </div>
       </div>
     </main>

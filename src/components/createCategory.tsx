@@ -54,13 +54,13 @@ function createCategory() {
 
   return (
     <main>
-      <section className="createCategory">
+      <section className="dashboard">
       <h4>Add another category</h4>
         <form onSubmit={saveCategory}>
           <input
             type="text"
             required
-            placeholder="enter the name of your new category"
+            placeholder="new category name"
             name="categoryName"
             value={categoryName}
             onChange={(e) => setCategoryName(e.target.value)}

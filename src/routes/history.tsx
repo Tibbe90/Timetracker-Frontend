@@ -6,6 +6,7 @@ import {
   Title,
   Tooltip,
   Legend,
+ // Colors,
 } from 'chart.js';
 ChartJS.register(
   CategoryScale,
@@ -17,10 +18,10 @@ ChartJS.register(
 );
 import { useNavigate } from "react-router-dom";
 import "../css/homepage.css";
-import useCategories from "../hooks/useCategories";
 import { useEffect, useState } from "react";
-import type { Category, User } from "../types/types";
+import type { CategoryHistory, User } from "../types/types";
 import { Bar } from 'react-chartjs-2';
+import useCategoryHistory from '../hooks/useCategoryHistory';
 
 //https://www.chartjs.org/docs/latest/getting-started/
 //https://react-chartjs-2.js.org/components/bar
@@ -29,7 +30,7 @@ import { Bar } from 'react-chartjs-2';
 function history() {
     const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState<User>();
-  const categories = useCategories(currentUser?.id);
+  const categories = useCategoryHistory(currentUser?.id);
 
   useEffect(() => {
     const stringedUser = localStorage.getItem("user");
@@ -38,7 +39,7 @@ function history() {
       setCurrentUser(parseUser);
     }
   }, []);
-
+  
   const options = {
   responsive: true,
   plugins: {
@@ -52,35 +53,41 @@ function history() {
   },
 };
 
-const labels = (categories.map((category: Category) => (category.categoryName)))
+const labels = (categories.map((category: CategoryHistory) => (category.categoryName)))
+const historyData = (categories.map((category : CategoryHistory) => Math.round(category.totalDuration/ 60000)))
+const detailedInfo: string[] = (categories.map((category : CategoryHistory) => {
+  const spentTime = category.totalDuration
+  const totalHours = Math.floor(spentTime / 3600000)
+  const totalMinutes = Math.floor((spentTime % 3600000) / 60000)
+  const totalSeconds = Math.floor((spentTime % 60000) / 1000)
+  return `You spent: ${totalHours} hours, ${totalMinutes} minutes and ${totalSeconds} seconds on ${category.categoryName}`
+}))
 
 const data = {
   labels,
   datasets: [
     {
-      label: 'Dataset 1',
-      data: categories.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
+      label: 'Time spent in minutes',
+      data: historyData,
+      backgroundColor: 'rgba(249, 251, 252, 0.8)',
+    }
   ],
 };
 
   return (
     <main>
       <h1>Tracking history</h1>
-      <section>
-        <button className="mainButton" onClick={() => navigate(`/userdashboard`)}>
+      <section >
+        <button className='button' onClick={() => navigate(`/userdashboard`)}>
           Back to dashboard
         </button>
       </section>
       <div>
-        <Bar/>
+        <Bar data={data} options={options}/>
       </div>
+      {detailedInfo.map((info: string) => (
+            <span>
+              {info}<br /></span>))}
     </main>
   );
 }
