@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import CategorySelect from "../components/categorySelect";
+import CategorySelect from "../components/CategorySelect";
 import CreateCategory from "../components/createCategory";
-import type { User } from "../types/types";
+import RenameCategory from "../components/RenameCategory";
+import type { Category, User } from "../types/types";
 import useCategories from "../hooks/useCategories";
 import Stopwatch from "../components/Stopwatch";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 function UserDashboard() {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState<User>();
-  const [currentCategory, setCurrentCategory] = useState<string>("")
+  const [currentCategory, setCurrentCategory] = useState<Category>()
   const categories = useCategories(currentUser?.id);
   
 //   useEffect(() => {
@@ -17,7 +18,7 @@ function UserDashboard() {
 //     []
 //   });
   useEffect(() => {
-
+      
   })
   useEffect(() => {
       const stringedUser = localStorage.getItem("user");
@@ -35,10 +36,13 @@ function UserDashboard() {
           <CategorySelect categories={categories} setNewCategory={setCurrentCategory} />
         </div>
         <div>
-            <Stopwatch currentUserId={currentUser?.id ?? null} currentCategoryId={currentCategory}/>
+            <Stopwatch currentUserId={currentUser?.id ?? null} currentCategoryId={currentCategory?.id ?? null}/>
         </div>
         <div>
           <CreateCategory />
+        </div> 
+        <div>
+        <RenameCategory categoryId={currentCategory?.id ?? ""} />
         </div>
         <div>
         <button className="button" onClick={() => navigate("/history")}>View tracking history</button>

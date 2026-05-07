@@ -27,6 +27,10 @@ export interface NewCategory {
     "userId": string,
     "categoryName": string
 }
+export interface RenameCategory {
+    "categoryId": string,
+    "categoryName": string
+}
 export interface TimerStatus {
     "status": string
 }

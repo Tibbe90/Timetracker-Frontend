@@ -28,7 +28,7 @@ function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
     reset,
   } = useStopwatch({
     autoStart: false,
-    interval: 100,
+    interval: 90,
     offsetTimestamp: offsetTime,
   });
 

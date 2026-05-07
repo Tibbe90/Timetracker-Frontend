@@ -4,8 +4,8 @@ import History from "./routes/history";
 import Login from "./routes/login";
 import Register from "./routes/register";
 import UserDashboard from './routes/userdashboard';
-import History from './routes/history';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
