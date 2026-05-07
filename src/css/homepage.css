@@ -5,11 +5,16 @@
     padding: 1rem;
     background-color: blue;
 }
-
-.createCategory {
+.button {
+    margin-top: 2%;
+    padding: 1rem;
+    margin-left: 10px;
+    background-color: blue;
+}
+.dashboard {
     margin-top: 20%;
 }
-.createCategory button {
+.dashboard button {
     padding: 1rem;
     margin-left: 10px;
     background-color: blue;

@@ -40,3 +40,8 @@ export interface Timer {
     "status": string,
     "creationDate": Date
 }
+export interface CategoryHistory {
+    categoryId: string;
+    categoryName: string;
+    totalDuration: number;
+}
