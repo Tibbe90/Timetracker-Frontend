@@ -3,33 +3,37 @@
 
 import Dropdown from "react-bootstrap/Dropdown";
 import type { Category } from "../types/types";
+import { useEffect, useState } from "react";
 
 interface CategoryProps {
   categories: Category[];
-  setNewCategory: (id: string) => void;
+  setNewCategory: (category: Category) => void;
 }
 
 function CategorySelect({ categories, setNewCategory }: CategoryProps) {
+  const [selectedCategory, setSelectedCategory] = useState<Category>()
+
   const selectCategory = (eventKey: string | null) => {
     if (eventKey) {
-      setNewCategory(eventKey);
-    }
-  };
+      const activeCategory = categories.find((category: Category) => category.id === eventKey);
+      if (activeCategory) {
+        setNewCategory(activeCategory)
+        setSelectedCategory(activeCategory)
+      }
+    }}
 
   return (
-    <div>
       <Dropdown onSelect={selectCategory}>
-        <Dropdown.Menu show>
+        <Dropdown.Toggle variant="outline-secondary">{selectedCategory?.categoryName ?? "Select category"}</Dropdown.Toggle>
+        <Dropdown.Menu>
           <Dropdown.Header>Your categories</Dropdown.Header>
           {categories.map((category: Category) => (
-            <Dropdown.Item key={category.id} eventKey={category.id}>
+            <Dropdown.Item key={category.id} eventKey={category.id} active={selectedCategory?.id === category.id} >
               {category.categoryName}
-              <br />
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>
       </Dropdown>
-    </div>
   );
 }
 
