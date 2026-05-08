@@ -39,6 +39,8 @@ function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
    //   setActiveStopwatch(false);
       return;
     }
+
+    // https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_gettimezoneoffset
     const currentDate = new Date()
     const timeDifference = currentDate.getTimezoneOffset()
     const timeStart = new Date(checkTimer.timeStart);
