@@ -39,10 +39,11 @@ function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
    //   setActiveStopwatch(false);
       return;
     }
-    const currentDate = Date.now();
+    const currentDate = new Date()
+    const timeDifference = currentDate.getTimezoneOffset()
     const timeStart = new Date(checkTimer.timeStart);
-    const duration = currentDate - timeStart.getTime();
-    const newOffset = new Date(currentDate + duration);
+    const duration = currentDate.getTime() - timeStart.getTime();
+    const newOffset = new Date(currentDate.getTime() + duration - timeDifference);
  //   setActiveStopwatch(true);
     setOffsetTime(newOffset);
   }, [checkTimer]);
