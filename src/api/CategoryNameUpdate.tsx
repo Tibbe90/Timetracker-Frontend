@@ -1,8 +1,6 @@
 import {url} from "../data.tsx"
 
 async function CategoryNameUpdate(categoryId?: string, newCategoryName?: string) {
-
-    console.log("categoryId from NameUpdate: ",categoryId, "newName: ", newCategoryName);
     
     if (!categoryId) {
       alert("You must select a category first")
