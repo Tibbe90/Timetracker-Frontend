@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import type { Credentials } from "../types/types";
 import { useState } from "react";
+import {url} from "../data.tsx"
 
 function login() {
    const navigate = useNavigate();
@@ -22,7 +23,7 @@ function login() {
     e.preventDefault();
     
     //Update to also check password
-    const response = await fetch(`http://localhost:8080/api/user/login/${credentials.username}`,
+    const response = await fetch(`${url}api/user/login/${credentials.username}`,
       {
         method: "POST",headers: {
         "Content-Type": "application/json",
@@ -32,7 +33,6 @@ function login() {
     )
     if (response.ok) {
       const user = await response.json()
-      console.log(user.id);
       localStorage.setItem('user', JSON.stringify(user))
       navigate(`/UserDashboard`)
         

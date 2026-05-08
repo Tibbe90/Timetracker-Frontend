@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../css/homepage.css";
 import type { NewUser } from "../types/types";
-const url = "http://localhost:8080/api/user/register";
+import {url} from "../data.tsx"
 
 function register() {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ function register() {
       alert("Passwords don't match");
     }
     fetch(
-      `${url}`,
+      `${url}api/user/register`,
       {
         method: "POST",
         headers: {

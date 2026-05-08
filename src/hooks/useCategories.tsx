@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Category } from "../types/types";
+import {url} from "../data.tsx"
 
 export function useCategories(userId?: string) {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -10,7 +11,7 @@ export function useCategories(userId?: string) {
     }
     const getCategories = async () => {
       const response = await fetch(
-        `http://localhost:8080/api/${userId}/my-categories`,
+        `${url}api/${userId}/my-categories`,
       );
       if (response.ok) {
         const data = await response.json();

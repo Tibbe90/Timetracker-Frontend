@@ -1,3 +1,5 @@
+import {url} from "../data.tsx"
+
 async function timerStart(userId?: string, categoryId?: string) {
 
     const startTime: number = new Date().getTime()
@@ -7,7 +9,7 @@ async function timerStart(userId?: string, categoryId?: string) {
       return true;
     }
       const response = await fetch(
-        `http://localhost:8080/api/time/${userId}/${categoryId}/start`, {
+        `${url}api/time/${userId}/${categoryId}/start`, {
         method: "POST",
         headers: {
         "Content-Type": "application/json",

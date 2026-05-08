@@ -10,8 +10,9 @@ interface StopwatchProps {
   currentCategoryId: string | null;
 }
 
+// https://www.npmjs.com/package/react-timer-hook
 function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
-  //ActiveStopwatch has no purpose in V1, it exists to implement pause logic. Right now functions the same as isRunning
+  //ActiveStopwatch has no purpose in V1, it exists to be able to implement pause logic. Right now functions the same as isRunning
  // const [activeStopwatch, setActiveStopwatch] = useState<boolean>(false);
   const [offsetTime, setOffsetTime] = useState<Date | undefined>(undefined);
 
