@@ -13,7 +13,7 @@ async function CategoryNameUpdate(categoryId?: string, newCategoryName?: string)
       return;
     }
       const response = await fetch(
-        `${url}/category/${categoryId}`, {
+        `${url}api/category/${categoryId}`, {
         method: "PATCH",
         headers: {
         "Content-Type": "application/json",
