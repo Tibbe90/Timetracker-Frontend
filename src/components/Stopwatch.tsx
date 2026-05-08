@@ -45,7 +45,8 @@ function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
     const timeDifference = currentDate.getTimezoneOffset()
     const timeStart = new Date(checkTimer.timeStart);
     const duration = currentDate.getTime() - timeStart.getTime();
-    const newOffset = new Date(currentDate.getTime() + duration - timeDifference);
+    const newDuration = duration - timeDifference;
+    const newOffset = new Date(currentDate.getTime() + newDuration);
  //   setActiveStopwatch(true);
     setOffsetTime(newOffset);
   }, [checkTimer]);
