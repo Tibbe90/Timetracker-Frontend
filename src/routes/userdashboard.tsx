@@ -12,14 +12,7 @@ function UserDashboard() {
   const [currentUser, setCurrentUser] = useState<User>();
   const [currentCategory, setCurrentCategory] = useState<Category>()
   const categories = useCategories(currentUser?.id);
-  
-//   useEffect(() => {
-//     console.log(currentCategory),
-//     []
-//   });
-  useEffect(() => {
-      
-  })
+   
   useEffect(() => {
       const stringedUser = localStorage.getItem("user");
       if (stringedUser) {

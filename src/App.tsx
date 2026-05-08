@@ -7,6 +7,7 @@ import UserDashboard from './routes/userdashboard';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TimerList from './routes/timerList';
+import LoginAdmin from './routes/LoginAdmin';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
   <Routes>
     <Route path="/" element={<Homepage />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/LoginAdmin" element={<LoginAdmin />} />
     <Route path="/register" element={<Register />} />
     <Route path="/userdashboard" element={<UserDashboard />} />
     <Route path="/history" element={<History />} />
