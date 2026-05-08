@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { CategoryHistory } from "../types/types";
+import {url} from "../data.tsx"
 
 export function useCategoryHistory(userId?: string) {
   const [categoryHistory, setCategoryHistory] = useState<CategoryHistory[]>([]);
@@ -10,7 +11,7 @@ export function useCategoryHistory(userId?: string) {
     }
     const getCategories = async () => {
       const response = await fetch(
-        `http://localhost:8080/api/time/${userId}/history`,
+        `${url}api/time/${userId}/history`,
       );
       if (response.ok) {
         const data = await response.json();

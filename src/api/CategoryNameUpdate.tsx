@@ -1,3 +1,5 @@
+import {url} from "../data.tsx"
+
 async function CategoryNameUpdate(categoryId?: string, newCategoryName?: string) {
 
     console.log("categoryId from NameUpdate: ",categoryId, "newName: ", newCategoryName);
@@ -11,7 +13,7 @@ async function CategoryNameUpdate(categoryId?: string, newCategoryName?: string)
       return;
     }
       const response = await fetch(
-        `http://localhost:8080/api/category/${categoryId}`, {
+        `${url}api/category/${categoryId}`, {
         method: "PATCH",
         headers: {
         "Content-Type": "application/json",

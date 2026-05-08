@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Timer } from "../types/types";
+import {url} from "../data.tsx"
 
 export function useTimerStatus(userId?: string) {
   const [timer, setTimer] = useState<Timer | null>(null);
@@ -10,7 +11,7 @@ export function useTimerStatus(userId?: string) {
     }
     const getRunningTimer = async () => {
       const response = await fetch(
-        `http://localhost:8080/api/time/${userId}/status`,
+        `${url}api/time/${userId}/status`,
       );
       if (response.ok) {
         const data = await response.json();

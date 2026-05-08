@@ -1,5 +1,4 @@
 // https://react-bootstrap.netlify.app/docs/components/dropdowns/
-// https://reactrouter.com/api/hooks/useFetcher
 
 import Dropdown from "react-bootstrap/Dropdown";
 import type { Category } from "../types/types";

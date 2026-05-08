@@ -1,3 +1,4 @@
+import {url} from "../data.tsx"
 async function timerStop(userId?: string) {
 
     const stopTime: number = new Date().getTime()
@@ -5,7 +6,7 @@ async function timerStop(userId?: string) {
       return true;
     }
       const response = await fetch(
-        `http://localhost:8080/api/time/${userId}/stop`, {
+        `${url}api/time/${userId}/stop`, {
         method: "POST",
         headers: {
         "Content-Type": "application/json",

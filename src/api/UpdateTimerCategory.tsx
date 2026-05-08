@@ -1,3 +1,4 @@
+import {url} from "../data.tsx"
 async function UpdateTimerCategory(timerId?: string, newCategoryId?: string) {
     
     if (!timerId) {
@@ -11,7 +12,7 @@ async function UpdateTimerCategory(timerId?: string, newCategoryId?: string) {
       return;
     }
       const response = await fetch(
-        `http://localhost:8080/api/time/category/${timerId}`, {
+        `${url}api/time/category/${timerId}`, {
         method: "PATCH",
         headers: {
         "Content-Type": "application/json",

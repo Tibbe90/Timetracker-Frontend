@@ -1,61 +1,56 @@
 import { useEffect, useState } from "react";
 import type { NewCategory, User } from "../types/types";
 import { useNavigate } from "react-router-dom";
+import { url } from "../data.tsx";
 
 function createCategory() {
-    const navigate = useNavigate();
-    const [userId, setUserId] = useState<string>("")
-    const [categoryName, setCategoryName] = useState<string>("")
-    const [newCategory, setnewCategory] = useState<NewCategory>({
-        userId: "",
-        categoryName: "",
-    })
+  const navigate = useNavigate();
+  const [userId, setUserId] = useState<string>("");
+  const [categoryName, setCategoryName] = useState<string>("");
+  const [newCategory, setnewCategory] = useState<NewCategory>({
+    userId: "",
+    categoryName: "",
+  });
 
-    const handleNewCategory = () => {
+  const handleNewCategory = () => {
     setnewCategory({
-        userId,
-        categoryName
+      userId,
+      categoryName,
     });
   };
-      
-      useEffect(() => {
-        const stringedUser = localStorage.getItem('user')
-        if (stringedUser) {
-          const parseUser: User = JSON.parse(stringedUser)
-          setUserId(parseUser.id)
-        }
-      }, [])
-      
-    const saveCategory = (e: React.SubmitEvent<HTMLFormElement>) => {
+
+  useEffect(() => {
+    const stringedUser = localStorage.getItem("user");
+    if (stringedUser) {
+      const parseUser: User = JSON.parse(stringedUser);
+      setUserId(parseUser.id);
+    }
+  }, []);
+
+  const saveCategory = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    fetch(
-      `http://localhost:8080/api/${userId}/category`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...newCategory,
-        }),
+    const response = await fetch(`${url}api/${userId}/category`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    )
-      .then((response: Response) => response.json())
-      .then(data => {
-        console.log(data);
-        navigate("/userdashboard")
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("something went wrong");
-      });
+      body: JSON.stringify({
+        ...newCategory,
+      }),
+    });
+    if (response.ok) {
+      navigate("/userdashboard");
+      return;
+    } else {
+      console.log(await response.text());
     }
+  };
 
   return (
     <main>
       <section className="dashboard">
-      <h4>Add another category</h4>
+        <h4>Add another category</h4>
         <form onSubmit={saveCategory}>
           <input
             type="text"
@@ -64,14 +59,14 @@ function createCategory() {
             name="categoryName"
             value={categoryName}
             onChange={(e) => setCategoryName(e.target.value)}
-            />
-            <button type="submit" onClick={handleNewCategory}>
+          />
+          <button type="submit" onClick={handleNewCategory}>
             Add category
           </button>
-            </form>
-            </section>
-            </main>
-            )
+        </form>
+      </section>
+    </main>
+  );
 }
 
 export default createCategory;

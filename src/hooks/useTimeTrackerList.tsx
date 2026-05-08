@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Timer } from "../types/types";
+import {url} from "../data.tsx"
 
 export function useTimeTrackerList(userId?: string) {
   const [timeTrackers, setTimeTrackers] = useState<Timer[]>([]);
@@ -10,7 +11,7 @@ export function useTimeTrackerList(userId?: string) {
     }
     const getTimeTrackers = async () => {
       const response = await fetch(
-        `http://localhost:8080/api/time/${userId}`,
+        `${url}api/time/${userId}`,
       );
       if (response.ok) {
         const data = await response.json();
