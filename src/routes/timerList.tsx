@@ -48,19 +48,19 @@ function TimerList() {
         </button>
       </div>
       <div style={{ textAlign: "center" }}>
-        <table>
+        <table style={{ margin: "0 auto"}}>
           <thead>
-            <tr>
-              <th>Date</th>
-              <th>Category</th>
-              <th>Hr:Min:Sec</th>
+            <tr style={{borderBottom: "1px solid #020070"}}>
+              <th style={{ width: "150px" }}>Date</th>
+              <th style={{ width: "100px" }}>Category</th>
+              <th style={{ width: "150px" }}>Hr:Min:Sec</th>
             </tr>
           </thead>
           <tbody>
             {timeTrackers.map((time) => (
-              <tr key={time.id}>
-                <td>{new Date(time.creationDate).toDateString()}</td>
-                <td>
+              <tr style={{ borderRight: "1px solid #020070",  borderLeft: "1px solid #020070", borderBottom: "1px solid #020070"}} key={time.id}>
+                <td style={{ borderRight: "1px solid #020070"}} >{new Date(time.creationDate).toDateString()}</td>
+                <td style={{ borderRight: "1px solid #020070"}}>
                   <Dropdown
                     onSelect={(eventkey) => updateCategory(eventkey, time.id)}
                   >

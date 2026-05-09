@@ -77,7 +77,7 @@ function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
 
   return (
     <div>
-      <p>Stopwatch</p>
+      <h3>Stopwatch</h3>
       <div style={{ fontSize: "35px" }}>
         <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
         <span>{seconds}</span>:<span>{milliseconds}</span>

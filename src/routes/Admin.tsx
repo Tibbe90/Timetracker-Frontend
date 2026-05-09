@@ -23,18 +23,18 @@ function Admin() {
         </button>
       </div>
       <div style={{ textAlign: "center" }}>
-        <table>
+        <table style={{ margin: "0 auto"}}>
           <thead>
-            <tr>
-              <th>Username</th>
-              <th>Time spent the last 30 days: Hr:Min:Sec</th>
+            <tr style={{borderBottom: "1px solid #020070"}}>
+              <th style={{ width: "200px" }}>Username</th>
+              <th style={{ width: "200px" }}>Hr:Min:Sec</th>
             </tr>
           </thead>
           <tbody>
             {userDurations.map((user) => (
-              <tr>
-                <td>{user.username}</td>
-                <td>{calculateTime(user.totalDuration)}</td>
+              <tr style={{ borderRight: "1px solid #020070",  borderLeft: "1px solid #020070", borderBottom: "1px solid #020070"}}>
+                <td style={{ borderRight: "1px solid #020070"}}>{user.username}</td>
+                <td style={{ padding: "8px 16px" }}>{calculateTime(user.totalDuration)}</td>
               </tr>
             ))}
           </tbody>
