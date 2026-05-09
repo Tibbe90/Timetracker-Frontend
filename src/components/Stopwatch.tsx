@@ -42,11 +42,9 @@ function Stopwatch({ currentUserId, currentCategoryId }: StopwatchProps) {
 
     // https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_gettimezoneoffset
     const currentDate = new Date()
-    const timeDifference = currentDate.getTimezoneOffset() * 60000
     const timeStart = new Date(checkTimer.timeStart);
     const duration = currentDate.getTime() - timeStart.getTime();
-    const newDuration = duration + timeDifference;
-    const newOffset = new Date(currentDate.getTime() + newDuration);
+    const newOffset = new Date(currentDate.getTime() + duration);
  //   setActiveStopwatch(true);
     setOffsetTime(newOffset);
   }, [checkTimer]);

@@ -23,12 +23,14 @@ function login() {
     e.preventDefault();
     
     //Update to also check password
-    const response = await fetch(`${url}api/user/login/${credentials.username}`,
+    const response = await fetch(`${url}api/user/login`,
       {
-        method: "POST",headers: {
+        method: "POST",
+        credentials: "include",
+        headers: {
         "Content-Type": "application/json",
       },
-        body: JSON.stringify(credentials.username)
+        body: JSON.stringify( {...credentials}),
       },
     )
     if (response.ok) {
@@ -38,8 +40,7 @@ function login() {
         
     } else {
         const error = await response.text()
-        console.log("error: ", error);
-        alert("something went wrong");
+        alert(error);
     }
   };
 

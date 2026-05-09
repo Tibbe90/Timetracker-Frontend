@@ -32,6 +32,7 @@ function createCategory() {
 
     const response = await fetch(`${url}api/${userId}/category`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -40,6 +41,7 @@ function createCategory() {
       }),
     });
     if (response.ok) {
+      alert(`Category ${newCategory.categoryName} will appear next time you navigate`)
       navigate("/userdashboard");
       return;
     } else {

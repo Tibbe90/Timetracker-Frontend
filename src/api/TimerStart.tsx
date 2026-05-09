@@ -11,6 +11,7 @@ async function timerStart(userId?: string, categoryId?: string) {
       const response = await fetch(
         `${url}api/time/${userId}/${categoryId}/start`, {
         method: "POST",
+        credentials: 'include',
         headers: {
         "Content-Type": "application/json",
       },

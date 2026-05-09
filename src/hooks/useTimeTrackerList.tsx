@@ -11,7 +11,9 @@ export function useTimeTrackerList(userId?: string) {
     }
     const getTimeTrackers = async () => {
       const response = await fetch(
-        `${url}api/time/${userId}`,
+        `${url}api/time/${userId}`,{
+        credentials:"include"
+        }
       );
       if (response.ok) {
         const data = await response.json();

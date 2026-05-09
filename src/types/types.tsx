@@ -4,6 +4,11 @@ export interface NewUser {
     "password": string
 }
 
+export interface UserDurations {
+    "username": string,
+    "totalDuration": number
+}
+
 export interface User {
     "id": string,
     "username": string,
