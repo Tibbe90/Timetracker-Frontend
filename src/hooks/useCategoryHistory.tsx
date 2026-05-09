@@ -11,7 +11,9 @@ export function useCategoryHistory(userId?: string) {
     }
     const getCategories = async () => {
       const response = await fetch(
-        `${url}api/time/${userId}/history`,
+        `${url}api/time/${userId}/history`,{
+        credentials:"include"
+        }
       );
       if (response.ok) {
         const data = await response.json();

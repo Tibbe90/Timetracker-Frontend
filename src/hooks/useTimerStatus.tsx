@@ -11,7 +11,9 @@ export function useTimerStatus(userId?: string) {
     }
     const getRunningTimer = async () => {
       const response = await fetch(
-        `${url}api/time/${userId}/status`,
+        `${url}api/time/${userId}/status`,{
+        credentials:"include"
+        }
       );
       if (response.ok) {
         const data = await response.json();

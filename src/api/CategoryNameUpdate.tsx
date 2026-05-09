@@ -13,6 +13,7 @@ async function CategoryNameUpdate(categoryId?: string, newCategoryName?: string)
       const response = await fetch(
         `${url}api/category/${categoryId}`, {
         method: "PATCH",
+        credentials: "include",
         headers: {
         "Content-Type": "application/json",
       },
@@ -20,6 +21,7 @@ async function CategoryNameUpdate(categoryId?: string, newCategoryName?: string)
       },
       );
       if (response.ok) {
+        alert(`Category name will be updated next time you navigate`)
         return
       } else {
         console.log(await response.text());

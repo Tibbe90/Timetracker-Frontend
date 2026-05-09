@@ -12,14 +12,7 @@ function UserDashboard() {
   const [currentUser, setCurrentUser] = useState<User>();
   const [currentCategory, setCurrentCategory] = useState<Category>()
   const categories = useCategories(currentUser?.id);
-  
-//   useEffect(() => {
-//     console.log(currentCategory),
-//     []
-//   });
-  useEffect(() => {
-      
-  })
+   
   useEffect(() => {
       const stringedUser = localStorage.getItem("user");
       if (stringedUser) {
@@ -30,6 +23,7 @@ function UserDashboard() {
 
   return (
     <main>
+      <h1>Welcome back, {currentUser?.username}!</h1>
       <h1>TajmTrackR</h1>
       <div>
         <div>
@@ -51,6 +45,7 @@ function UserDashboard() {
       </div>
       <div>
         <button className="button" onClick={() => navigate("/")}>Back to home</button></div>
+        <button className="button" onClick={() => navigate("/admin")}>I'm admin</button>
     </main>
   );
 }

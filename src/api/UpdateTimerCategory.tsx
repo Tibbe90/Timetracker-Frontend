@@ -14,6 +14,7 @@ async function UpdateTimerCategory(timerId?: string, newCategoryId?: string) {
       const response = await fetch(
         `${url}api/time/category/${timerId}`, {
         method: "PATCH",
+        credentials: 'include',
         headers: {
         "Content-Type": "application/json",
       },

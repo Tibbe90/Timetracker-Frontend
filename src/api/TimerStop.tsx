@@ -8,6 +8,7 @@ async function timerStop(userId?: string) {
       const response = await fetch(
         `${url}api/time/${userId}/stop`, {
         method: "POST",
+        credentials: 'include',
         headers: {
         "Content-Type": "application/json",
       },
